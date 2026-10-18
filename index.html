@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101c31">
+    <meta name="description" content="Khám phá những dấu mốc quan trọng trong lịch sử nước Nga qua dòng thời gian và các nhân vật tiêu biểu.">
+    <title>Lịch sử nước Nga — Dòng chảy qua thời gian</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #18243a;
+            --muted: #687386;
+            --navy: #101c31;
+            --red: #b4373c;
+            --gold: #d7ad68;
+            --paper: #f7f4ed;
+            --white: #fffefa;
+            --line: #ded9ce;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; color: var(--ink); background: var(--paper); line-height: 1.65; }
+        a { color: inherit; }
+        .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+
+        .topbar {
+            position: absolute;
+            z-index: 2;
+            inset: 0 0 auto;
+            color: white;
+            border-bottom: 1px solid rgb(255 255 255 / 16%);
+        }
+        .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-size: .91rem; font-weight: 700; letter-spacing: .08em; }
+        .brand-mark { width: 31px; height: 31px; display: grid; place-items: center; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-family: Georgia, serif; font-size: 1.1rem; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: rgb(255 255 255 / 82%); text-decoration: none; font-size: .88rem; transition: color .2s; }
+        .nav-links a:hover, .nav-links a:focus-visible { color: var(--gold); }
+        .menu-toggle { display: none; color: white; background: transparent; border: 1px solid rgb(255 255 255 / 45%); border-radius: 5px; padding: 7px 11px; font: inherit; cursor: pointer; }
+
+        .hero {
+            min-height: 650px;
+            display: grid;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 78% 48%, rgb(188 131 70 / 24%), transparent 29%),
+                linear-gradient(112deg, #101c31 0%, #14243d 57%, #273349 100%);
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            right: max(4%, calc((100vw - 1120px) / 2));
+            top: 135px;
+            border: 1px solid rgb(215 173 104 / 28%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 34px rgb(215 173 104 / 4%), 0 0 0 80px rgb(215 173 104 / 3%);
+            pointer-events: none;
+        }
+        .hero-content { max-width: 690px; padding: 150px 0 112px; position: relative; z-index: 1; }
+        .eyebrow { margin: 0 0 18px; color: var(--gold); font-size: .76rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 { max-width: 700px; margin-bottom: 22px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3rem, 7vw, 5.7rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.02; }
+        .hero-copy { max-width: 560px; margin-bottom: 32px; color: rgb(255 255 255 / 75%); font-size: 1.06rem; }
+        .button { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 20px; border: 1px solid var(--gold); color: white; text-decoration: none; font-size: .9rem; transition: background .2s, color .2s; }
+        .button:hover, .button:focus-visible { color: var(--navy); background: var(--gold); }
+        .hero-note { position: absolute; z-index: 1; right: 0; bottom: 42px; color: rgb(255 255 255 / 62%); font-size: .8rem; letter-spacing: .06em; }
+
+        .intro { padding: 82px 0 74px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 76px; align-items: start; }
+        .section-kicker { color: var(--red); font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+        .intro h2, .section-heading h2 { margin: 10px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.15; }
+        .intro-copy { color: var(--muted); font-size: 1.02rem; }
+        .intro-copy p:last-child { margin-bottom: 0; }
+
+        .timeline-section { padding: 82px 0 96px; background: var(--white); }
+        .section-heading { max-width: 620px; margin-bottom: 48px; }
+        .section-heading > p:last-child { margin: 16px 0 0; color: var(--muted); }
+        .timeline { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .timeline::before { content: ""; position: absolute; top: 19px; left: 10px; right: 10px; height: 1px; background: var(--line); }
+        .era { position: relative; padding: 0 2px 12px; }
+        .era-marker { position: relative; z-index: 1; display: block; width: 11px; height: 11px; margin: 14px 0 24px; border: 2px solid var(--white); border-radius: 50%; background: var(--red); box-shadow: 0 0 0 1px var(--red); }
+        .era-date { margin: 0 0 7px; color: var(--red); font-size: .76rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .era h3 { margin-bottom: 10px; font-family: Georgia, "Times New Roman", serif; font-size: 1.35rem; font-weight: 400; }
+        .era p { max-width: 330px; margin-bottom: 0; color: var(--muted); font-size: .92rem; }
+
+        .people { padding: 82px 0; }
+        .people-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+        .people h2 { max-width: 400px; margin: 10px 0 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.15; }
+        .people-intro { color: var(--muted); }
+        .person-list { border-top: 1px solid var(--line); }
+        .person { display: grid; grid-template-columns: 76px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+        .person-year { color: var(--red); font-family: Georgia, serif; font-size: 1.05rem; }
+        .person h3 { margin: 0 0 4px; font-size: .98rem; }
+        .person p { margin: 0; color: var(--muted); font-size: .88rem; }
+
+        .closing { padding: 64px 0; color: white; text-align: center; background: var(--navy); }
+        .closing .eyebrow { margin-bottom: 11px; }
+        .closing h2 { max-width: 620px; margin: 0 auto 14px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 400; line-height: 1.2; }
+        .closing p:last-child { max-width: 620px; margin: auto; color: rgb(255 255 255 / 68%); }
+        footer { padding: 22px 0; color: rgb(255 255 255 / 54%); background: #0b1423; text-align: center; font-size: .78rem; }
+        footer p { margin: 0; }
+
+        @media (max-width: 720px) {
+            .wrap { width: min(100% - 36px, 540px); }
+            .nav { min-height: 68px; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 16px 22px 20px; flex-direction: column; align-items: flex-start; gap: 14px; background: var(--navy); }
+            .nav-links.is-open { display: flex; }
+            .hero { min-height: 610px; }
+            .hero-content { padding: 138px 0 100px; }
+            .hero::after { width: 340px; height: 340px; right: -180px; top: 205px; }
+            .hero-note { right: 0; bottom: 24px; font-size: .7rem; }
+            .intro, .people-grid { grid-template-columns: 1fr; gap: 24px; }
+            .intro { padding: 60px 0; }
+            .timeline-section, .people { padding: 62px 0; }
+            .timeline { grid-template-columns: 1fr; gap: 0; padding-left: 20px; }
+            .timeline::before { top: 12px; bottom: 10px; left: 5px; right: auto; width: 1px; height: auto; }
+            .era { padding-bottom: 26px; }
+            .era-marker { position: absolute; top: 0; left: -20px; margin: 5px 0 0; }
+            .people-grid { gap: 30px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <nav class="nav wrap" aria-label="Điều hướng chính">
+            <a class="brand" href="#dau-trang" aria-label="Lịch sử nước Nga, về đầu trang">
+                <span class="brand-mark" aria-hidden="true">Н</span>
+                <span>LỊCH SỬ NƯỚC NGA</span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+            <div class="nav-links" id="nav-links">
+                <a href="#tong-quan">Tổng quan</a>
+                <a href="#dong-thoi-gian">Dòng thời gian</a>
+                <a href="#nhan-vat">Nhân vật</a>
+                <a href="#ket-luan">Kết luận</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="dau-trang">
+            <div class="wrap">
+                <div class="hero-content">
+                    <p class="eyebrow">Một hành trình qua hơn một thiên niên kỷ</p>
+                    <h1>Nước Nga<br>qua dòng thời gian</h1>
+                    <p class="hero-copy">Từ những công quốc đầu tiên bên sông Dnieper đến một cường quốc hiện đại — khám phá các bước ngoặt đã định hình lịch sử Nga.</p>
+                    <a class="button" href="#dong-thoi-gian">Khám phá hành trình <span aria-hidden="true">→</span></a>
+                </div>
+                <p class="hero-note">TỪ KYIVAN RUS ĐẾN NƯỚC NGA HIỆN ĐẠI</p>
+            </div>
+        </section>
+
+        <section class="intro wrap" id="tong-quan">
+            <div>
+                <p class="section-kicker">Câu chuyện của một quốc gia</p>
+                <h2>Giao điểm của những nền </nav> văn minh</h2>
+            </div>
+            <div class="intro-copy">
+                <p>Lịch sử Nga trải dài qua nhiều thế kỷ, gắn với những vùng đất rộng lớn ở Đông Âu và Bắc Á. Các triều đại, cuộc cải cách và biến động xã hội đã nhiều lần làm thay đổi hình hài đất nước.</p>
+                <p>Khung trình bày này điểm lại những giai đoạn tiêu biểu, giúp người nghe hình dung mạch lịch sử và nhận ra những chuyển biến nối tiếp nhau.</p>
+            </div>
+        </section>
+
+        <section class="timeline-section" id="dong-thoi-gian">
+            <div class="wrap">
+                <div class="section-heading">
+                    <p class="section-kicker">Những dấu mốc chính</p>
+                    <h2>Dòng thời gian lịch sử</h2>
+                    <p>Từ nhà nước Rus cổ đến Liên bang Nga ngày nay: sáu chặng đường, mỗi chặng mở ra một chương mới.</p>
+                </div>
+                <div class="timeline">
+                    <article class="era">
+                        <span class="era-marker" aria-hidden="true"></span>
+                        <p class="era-date">Thế kỷ IX – XIII</p>
+                        <h3>Kyivan Rus</h3>
+                        <p>Nhà nước Đông Slav hình thành quanh Kyiv; Kitô giáo Chính thống được tiếp nhận vào năm 988 dưới thời Vladimir I.</p>
+                    </article>
+                    <article class="era">
+                        <span class="era-marker" aria-hidden="true"></span>
+                        <p class="era-date">Thế kỷ XIII – XV</p>
+                        <h3>Thời kỳ Mông Cổ</h3>
+                        <p>Các vùng đất Rus chịu ảnh hưởng của Kim Trướng hãn quốc; Moskva dần vươn lên thành trung tâm quyền lực.</p>
+                    </article>
+                    <article class="era">
+                        <span class="era-marker" aria-hidden="true"></span>
+                        <p class="era-date">1547 – 1721</p>
+                        <h3>Nga Sa hoàng</h3>
+                        <p>Ivan IV xưng Sa hoàng; dưới thời Pyotr Đại đế, nước Nga mở rộng cải cách và hướng mạnh ra châu Âu.</p>
+                    </article>
+                    <article class="era">
+                        <span class="era-marker" aria-hidden="true"></span>
+                        <p class="era-date">1721 – 1917</p>
+                        <h3>Đế quốc Nga</h3>
+                        <p>Đế quốc được thành lập dưới triều Pyotr I, mở rộng lãnh thổ và trải qua nhiều cải cách cùng biến động xã hội.</p>
+                    </article>
+                    <article class="era">
+                        <span class="era-marker" aria-hidden="true"></span>
+                        <p class="era-date">1917 – 1991</p>
+                        <h3>Liên Xô</h3>
+                        <p>Cách mạng năm 1917 dẫn đến sự hình thành nhà nước Xô viết; Liên Xô tan rã vào năm 1991.</p>
+                    </article>
+                    <article class="era">
+                        <span class="era-marker" aria-hidden="true"></span>
+                        <p class="era-date">Từ năm 1991</p>
+                        <h3>Liên bang Nga</h3>
+                        <p>Nước Nga bước vào giai đoạn hậu Xô viết, tái định hình thể chế và vị thế trong một thế giới nhiều thay đổi.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="people wrap" id="nhan-vat">
+            <div>
+                <p class="section-kicker">Những con người tạo dấu ấn</p>
+                <h2>Các nhân vật tiêu biểu</h2>
+                <p class="people-intro">Mỗi thời đại được ghi nhớ qua những nhà lãnh đạo, nhà cải cách và tư tưởng gia có ảnh hưởng lớn đến vận mệnh đất nước.</p>
+            </div>
+            <div class="person-list">
+                <article class="person">
+                    <span class="person-year">978–1015</span>
+                    <div><h3>Vladimir I</h3><p>Đại công tước Kyiv; gắn với sự kiện Rus tiếp nhận Kitô giáo Chính thống.</p></div>
+                </article>
+                <article class="person">
+                    <span class="person-year">1672–1725</span>
+                    <div><h3>Pyotr Đại đế</h3><p>Sa hoàng tiến hành cải cách quân sự, hành chính và hiện đại hóa đất nước.</p></div>
+                </article>
+                <article class="person">
+                    <span class="person-year">1762–1796</span>
+                    <div><h3>Ekaterina II</h3><p>Nữ hoàng đưa Đế quốc Nga mở rộng ảnh hưởng và phát triển văn hóa.</p></div>
+                </article>
+                <article class="person">
+                    <span class="person-year">1870–1924</span>
+                    <div><h3>Vladimir Lenin</h3><p>Lãnh đạo Bolshevik trong Cách mạng Nga năm 1917 và nhà nước Xô viết đầu tiên.</p></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="closing" id="ket-luan">
+            <div class="wrap">
+                <p class="eyebrow">Nhìn lại và suy ngẫm</p>
+                <h2>Lịch sử không chỉ là những mốc thời gian</h2>
+                <p>Đó còn là câu chuyện về con người, những lựa chọn và các biến chuyển đã góp phần định hình nước Nga cũng như thế giới.</p>
+            </div>
+        </section>
+    </main>
+    <footer><div class="wrap"><p>Khung bài thuyết trình · Lịch sử nước Nga</p></div></footer>
+
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+            menuToggle.setAttribute("aria-expanded", String(!isOpen));
+            navLinks.classList.toggle("is-open", !isOpen);
+        });
+
+        navLinks.addEventListener("click", (event) => {
+            if (event.target.closest("a")) {
+                menuToggle.setAttribute("aria-expanded", "false");
+                navLinks.classList.remove("is-open");
+            }
+        });
+    </script>
+</body>
+</html>
